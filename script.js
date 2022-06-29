@@ -28,6 +28,8 @@ const images = [
     },
 ];
 
+
+// Creazione di nuovi elementi da popolare con il contenuto dell'array
 const imgWrapper = document.getElementById('wrapper');
 let activeImageIndex = 0;
 
@@ -55,6 +57,7 @@ for (let i = 0; i < images.length; i++) {
 }
 
 
+// Inizializzazione dei bottoni e degli elementi contenuti nel wrapper
 const nextButton = document.getElementById('next-button');
 const prevButton = document.getElementById('previous-button');
 
@@ -62,6 +65,7 @@ const imageElements = document.querySelectorAll('img');
 const titleElements = document.querySelectorAll('h1');
 const subtitleElements = document.querySelectorAll('p');
 
+// Funzionalità ai bottoni che passano alla slide successiva (next) o precedente(prev)
 nextButton.addEventListener('click', function(){
     imageElements[activeImageIndex].classList.remove('ms_active');
     titleElements[activeImageIndex].classList.remove('ms_active');
@@ -95,4 +99,22 @@ prevButton.addEventListener('click', function(){
     titleElements[activeImageIndex].classList.add('ms_active');
     subtitleElements[activeImageIndex].classList.add('ms_active');
 });
+
+
+// Funzionalità di autoplay con next slide ogni 3 secondi
+const nextSlideAuto = setInterval(function(){
+    imageElements[activeImageIndex].classList.remove('ms_active');
+    titleElements[activeImageIndex].classList.remove('ms_active');
+    subtitleElements[activeImageIndex].classList.remove('ms_active');
+
+    activeImageIndex++;
+
+    if (activeImageIndex === images.length) {
+        activeImageIndex = 0;
+    }
+    
+    imageElements[activeImageIndex].classList.add('ms_active');
+    titleElements[activeImageIndex].classList.add('ms_active');
+    subtitleElements[activeImageIndex].classList.add('ms_active');
+}, 3000);
 
