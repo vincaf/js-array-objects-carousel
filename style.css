@@ -2,6 +2,10 @@
     position: relative;
 }
 
+#wrapper{
+    position: relative;
+}
+
 #wrapper img{
     width: 100%;
     height: 500px;
@@ -11,8 +15,8 @@
 
 #wrapper h1{
     position: absolute;
-    top: 60px;
-    left: 1100px;
+    top: 30px;
+    right: 40px;
     color: #fff;
     text-shadow: 2px 2px 4px #000000;
     display: none;
@@ -20,8 +24,8 @@
 
 #wrapper p{
     position: absolute;
-    top: 115px;
-    left: 310px;
+    top: 90px;
+    right: 30px;
     color: #fff;
     text-shadow: 2px 2px 4px #000000;
     display: none;
