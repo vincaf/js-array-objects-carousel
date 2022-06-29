@@ -29,19 +29,20 @@ const images = [
 ];
 
 const imgWrapper = document.getElementById('wrapper');
+let activeImageIndex = 0;
 
-for (let i = 0; i < images.length - 1; i++) {
+for (let i = 0; i < images.length; i++) {
 
     const newImg = document.createElement('img');
     const newTitle = document.createElement('h1');
     const newSubtitle = document.createElement('p');
 
     // aggiunta del contenuto nell'attributo
-    newImg.setAttribute('src', images.url[i]);
-    newTitle.setAttribute('src', images.title[i]);
-    newSubtitle.setAttribute('src', images.description[i]);
+    newImg.setAttribute('src', images[i].url);
+    newTitle.innerText = images[i].title;
+    newSubtitle.innerText = images[i].description;
 
-    if(i===0){
+    if(i === activeImageIndex){
         newImg.classList.add('ms_active');
         newTitle.classList.add('ms_active');
         newSubtitle.classList.add('ms_active');
@@ -52,4 +53,46 @@ for (let i = 0; i < images.length - 1; i++) {
     imgWrapper.append(newTitle);
     imgWrapper.append(newSubtitle);
 }
+
+
+const nextButton = document.getElementById('next-button');
+const prevButton = document.getElementById('previous-button');
+
+const imageElements = document.querySelectorAll('img');
+const titleElements = document.querySelectorAll('h1');
+const subtitleElements = document.querySelectorAll('p');
+
+nextButton.addEventListener('click', function(){
+    imageElements[activeImageIndex].classList.remove('ms_active');
+    titleElements[activeImageIndex].classList.remove('ms_active');
+    subtitleElements[activeImageIndex].classList.remove('ms_active');
+
+    activeImageIndex++;
+
+    if (activeImageIndex === images.length) {
+        activeImageIndex = 0;
+    }
+
+    // prendo l'elemento all'indice attuale e aggiungo la classe active per renderlo visibile
+    imageElements[activeImageIndex].classList.add('ms_active');
+    titleElements[activeImageIndex].classList.add('ms_active');
+    subtitleElements[activeImageIndex].classList.add('ms_active');
+});
+
+prevButton.addEventListener('click', function(){
+    imageElements[activeImageIndex].classList.remove('ms_active');
+    titleElements[activeImageIndex].classList.remove('ms_active');
+    subtitleElements[activeImageIndex].classList.remove('ms_active');
+
+    activeImageIndex--;
+
+    if (activeImageIndex === -1) {
+        activeImageIndex = images.length -1;
+    }
+
+    // prendo l'elemento all'indice attuale e aggiungo la classe active per renderlo visibile
+    imageElements[activeImageIndex].classList.add('ms_active');
+    titleElements[activeImageIndex].classList.add('ms_active');
+    subtitleElements[activeImageIndex].classList.add('ms_active');
+});
 
